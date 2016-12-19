@@ -1,0 +1,35 @@
+# Contributor: Doug Crawford <doug.crawford@intelight-its.com>
+# Maintainer: Doug Crawford <doug.crawford@intelight-its.com>
+pkgname=fmt
+pkgver=3.0.1
+pkgrel=0
+pkgdesc="fmt (formerly cppformat) is an open-source formatting library"
+url="http://fmtlib.net/latest/index.html"
+arch="all"
+license="BSD"
+depends=""
+depends_dev="cmake"
+makedepends="$depends_dev"
+install=""
+subpackages="$pkgname-dev"
+source="https://github.com/fmtlib/fmt/releases/download/3.0.1/fmt-3.0.1.zip"
+
+builddir="$srcdir/$pkgname-$pkgver"
+build() {
+	cd "$builddir"
+	mkdir build
+	cd build
+	cmake -D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_POSITION_INDEPENDENT_CODE=ON \
+		..
+	make
+}
+
+package() {
+	cd "$builddir/build"
+	make install DESTDIR="${pkgdir}"
+}
+
+md5sums="14505463b838befe1513b09cae112715  fmt-3.0.1.zip"
+sha256sums="4c9af0dc919a8ae7022b44e1a03c435e42d65c866f44667d8d920d342b098550  fmt-3.0.1.zip"
+sha512sums="6a0eac72dd9a6e2d1be4c237225119f1daa0c97d3054833cd4a47333f4b5cf94a40b62adaf21ea2bc95da7c7a7994e6db2314e938707e1d6aefc61603f0a2441  fmt-3.0.1.zip"
