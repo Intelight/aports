@@ -1,0 +1,35 @@
+# Contributor: Doug Crawford <doug.crawford@intelight-its.com>
+# Maintainer: Doug Crawford <doug.crawford@intelight-its.com>
+pkgname=civetweb
+pkgver=1.6
+pkgrel=0
+pkgdesc="C/C++ embeddable web server with optional CGI, SSL and Lua support"
+url="https://github.com/civetweb/civetweb"
+arch="all"
+license="BSD"
+depends=""
+depends_dev="cmake"
+makedepends="$depends_dev"
+install=""
+subpackages="$pkgname-dev"
+source="http://intelight.s3.amazonaws.com/vendor/intelight-civetweb-89649d97ca06.tar.bz2"
+
+builddir="$srcdir/intelight-civetweb-89649d97ca06"
+build() {
+	cd "$builddir"
+	mkdir build
+	cd build
+	cmake -D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_POSITION_INDEPENDENT_CODE=ON \
+		..
+	make
+}
+
+package() {
+	cd "$builddir/build"
+	make install DESTDIR="${pkgdir}"
+}
+
+md5sums="f03cd54dd39f1669f36e0689c0c2993a  intelight-civetweb-89649d97ca06.tar.bz2"
+sha256sums="13085a60edc97886696c42ac2939bbbb778b34da4d5e7da4f046aa1006f6eda5  intelight-civetweb-89649d97ca06.tar.bz2"
+sha512sums="3a1cca3b3db8928a534f11e2ea16c398151721ca978019a769996faf325636502115b5808da7df8ef91fb2c7979423b1aa860a4e9a7482899a4018450c41b727  intelight-civetweb-89649d97ca06.tar.bz2"
