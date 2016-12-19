@@ -1,0 +1,26 @@
+# Contributor: Doug Crawford <doug.crawford@intelight-its.com>
+# Maintainer: Doug Crawford <doug.crawford@intelight-its.com>
+pkgname=lua-intf
+pkgver=1.0
+pkgrel=0
+pkgdesc="lua-intf is a binding between C++11 and Lua language"
+url="https://github.com/SteveKChiu/lua-intf"
+arch="all"
+license="MIT"
+depends=""
+depends_dev=""
+makedepends="$depends_dev"
+install=""
+subpackages="$pkgname-dev"
+source="https://github.com/SteveKChiu/lua-intf/archive/efac2178966c4937043b2ff346e67cd88d90dbee.zip"
+builddir="$srcdir/lua-intf-efac2178966c4937043b2ff346e67cd88d90dbee"
+#giturl="https://github.com/SteveKChiu/lua-intf.git -b efac217"
+
+package() {
+	mkdir -p "$pkgdir"/usr/include
+	cp -r "$builddir"/LuaIntf "$pkgdir"/usr/include
+}
+
+md5sums="00b07614f7a8e28970bd0ff2530220bf  efac2178966c4937043b2ff346e67cd88d90dbee.zip"
+sha256sums="2fdc83b3960f6143d42a203a13db643e7a54cd075962e2c3e1add70c47e15c25  efac2178966c4937043b2ff346e67cd88d90dbee.zip"
+sha512sums="be7f08aa4c83f9d22dc76f4db01abf6e1b128c28d41b4479e8a05ce1845f0b25268722bc35b799838c98bcc5286abe0e5ebf28065a90279fd0f37543bfc68d00  efac2178966c4937043b2ff346e67cd88d90dbee.zip"
