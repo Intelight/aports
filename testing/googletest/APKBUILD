@@ -1,0 +1,35 @@
+# Contributor: Doug Crawford <doug.crawford@intelight-its.com>
+# Maintainer: Doug Crawford <doug.crawford@intelight-its.com>
+pkgname=googletest
+pkgver=1.8.0
+pkgrel=0
+pkgdesc="Google's C++ test framework"
+url="https://github.com/google/googletest"
+arch="all"
+license="BSD"
+depends=""
+depends_dev="cmake"
+makedepends="$depends_dev"
+install=""
+subpackages="$pkgname-dev"
+source="https://github.com/google/googletest/archive/release-1.8.0.tar.gz"
+
+builddir="$srcdir/$pkgname-release-$pkgver"
+build() {
+	cd "$builddir"
+	mkdir build
+	cd build
+	cmake -D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_POSITION_INDEPENDENT_CODE=ON \
+		..
+	make
+}
+
+package() {
+	cd "$builddir/build"
+	make install DESTDIR="${pkgdir}"
+}
+
+md5sums="16877098823401d1bf2ed7891d7dce36  release-1.8.0.tar.gz"
+sha256sums="58a6f4277ca2bc8565222b3bbd58a177609e9c488e8a72649359ba51450db7d8  release-1.8.0.tar.gz"
+sha512sums="1dbece324473e53a83a60601b02c92c089f5d314761351974e097b2cf4d24af4296f9eb8653b6b03b1e363d9c5f793897acae1f0c7ac40149216035c4d395d9d  release-1.8.0.tar.gz"
