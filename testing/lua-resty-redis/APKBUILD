@@ -1,0 +1,38 @@
+# Contributor: Doug Crawford <doug.crawford@intelight-its.com>
+# Maintainer: Doug Crawford <doug.crawford@intelight-its.com>
+pkgname=lua-resty-redis
+pkgver=0.26
+pkgrel=0
+pkgdesc="Lua redis client driver for the ngx_lua based on the cosocket API"
+url="https://github.com/openresty/lua-resty-redis"
+arch="noarch"
+license="BSD"
+depends=""
+makedepends=""
+source="$pkgname-$pkgver.tar.gz::https://github.com/openresty/lua-resty-redis/archive/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+
+#_luaversions="5.1 5.2 5.3"
+_luaversions="5.1"
+for _v in $_luaversions; do
+	makedepends="$makedepends lua$_v-dev"
+	subpackages="$subpackages lua$_v-${pkgname#lua-}:_subpackage"
+done
+
+package() {
+	mkdir -p "$pkgdir"
+}
+
+_subpackage() {
+	local lver="${subpkgname:3:3}"
+	pkgdesc="$pkgdesc for Lua $lver"
+	depends="lua$lver"
+	install_if="$pkgname=$pkgver-r$pkgrel lua$lver"
+
+	cd "$builddir"
+	install -m 755 -D lib/resty/redis.lua "$subpkgdir"/usr/share/lua/$lver/resty/redis.lua
+}
+
+md5sums="9df5da79007328569878ea518ee5f34c  lua-resty-redis-0.26.tar.gz"
+sha256sums="8ec3a2b5055776657980fead5dee7651246f4bbb0903db4322dd232209f43b2e  lua-resty-redis-0.26.tar.gz"
+sha512sums="da062056834c54cb261e3c88dde5299b090b1152974d3f9686cb7c083580b6cdac4d185d4b1e820f769f6388648f1421df2fe53abee79dfc0df893873758bb53  lua-resty-redis-0.26.tar.gz"
