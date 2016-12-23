@@ -1,0 +1,40 @@
+# Contributor: Doug Crawford <doug.crawford@intelight-its.com>
+# Maintainer: Doug Crawford <doug.crawford@intelight-its.com>
+pkgname=lua-resty-websocket
+pkgver=0.06
+pkgrel=0
+pkgdesc="Lua WebSocket implementation for the ngx_lua module"
+url="https://github.com/openresty/lua-resty-websocket"
+arch="noarch"
+license="BSD"
+depends=""
+makedepends=""
+source="$pkgname-$pkgver.tar.gz::https://github.com/openresty/lua-resty-websocket/archive/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+
+#_luaversions="5.1 5.2 5.3"
+_luaversions="5.1"
+for _v in $_luaversions; do
+	makedepends="$makedepends lua$_v-dev"
+	subpackages="$subpackages lua$_v-${pkgname#lua-}:_subpackage"
+done
+
+package() {
+	mkdir -p "$pkgdir"
+}
+
+_subpackage() {
+	local lver="${subpkgname:3:3}"
+	pkgdesc="$pkgdesc for Lua $lver"
+	depends="lua$lver"
+	install_if="$pkgname=$pkgver-r$pkgrel lua$lver"
+
+	cd "$builddir"
+	install -m 755 -D lib/resty/websocket/client.lua "$subpkgdir"/usr/share/lua/$lver/resty/websocket/client.lua
+	install -m 755 -D lib/resty/websocket/protocol.lua "$subpkgdir"/usr/share/lua/$lver/resty/websocket/protocol.lua
+	install -m 755 -D lib/resty/websocket/server.lua "$subpkgdir"/usr/share/lua/$lver/resty/websocket/server.lua
+}
+
+md5sums="d48389f6b348b7097f558b5ba97ceae0  lua-resty-websocket-0.06.tar.gz"
+sha256sums="9d769d1943d33ac02e6938d3618e136cd31bf8ffb12eecbd01f9bb8cde75f0bc  lua-resty-websocket-0.06.tar.gz"
+sha512sums="c9e4acb5f7acca1b98b78b3177177ef5643d1259eacfc29642690ad2e52b2c7beebf26b7987251ca09bb668e4fc3a4530d18cfaba09e76cce1cd4dd6f55ebb34  lua-resty-websocket-0.06.tar.gz"
