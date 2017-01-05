@@ -12,9 +12,9 @@ depends_dev="cmake"
 makedepends="$depends_dev"
 install=""
 subpackages="$pkgname-dev"
-source="http://intelight.s3.amazonaws.com/vendor/intelight-snmp-cf08839e81d9.tar.bz2"
+source="http://intelight.s3.amazonaws.com/vendor/intelight-snmp-0b0f75e41b09.tar.bz2"
 
-builddir="$srcdir/intelight-snmp-cf08839e81d9"
+builddir="$srcdir/intelight-snmp-0b0f75e41b09"
 build() {
 	cd "$builddir"
 	mkdir build
@@ -30,6 +30,6 @@ package() {
 	make install DESTDIR="${pkgdir}"
 }
 
-md5sums="a7b0959824f870d1c81a9e6e772142e2  intelight-snmp-cf08839e81d9.tar.bz2"
-sha256sums="a2ce4119841f8c7f67ab20699a648548b45352834429c34f0fe4299859f06ac5  intelight-snmp-cf08839e81d9.tar.bz2"
-sha512sums="18aa4a67bdd20cfcf22a05208c8a7ca9911f520370c7281bbe4ee8211d75ea821339e904e2b5f0a3a0b4c335d37b22e3eb9c2750665e8fb8faa120d44ed94137  intelight-snmp-cf08839e81d9.tar.bz2"
+md5sums="cc42521e04d5012d5fecf857373e4313  intelight-snmp-0b0f75e41b09.tar.bz2"
+sha256sums="b1813388fa5da285b52ff0558942226b191e9e73cce598579202867855354f78  intelight-snmp-0b0f75e41b09.tar.bz2"
+sha512sums="c026b67d35317bde8b0a1e43b27940b4ec9b59f12b87d70bd129c056ce6be8ca747eee597633fa8649fbe872e7dd1d402dd121b54ed7ba1789985d2e375dfc16  intelight-snmp-0b0f75e41b09.tar.bz2"
