@@ -12,9 +12,9 @@ depends_dev="cmake"
 makedepends="$depends_dev"
 install=""
 subpackages="$pkgname-dev"
-source="http://intelight.s3.amazonaws.com/vendor/intelight-civetweb-89649d97ca06.tar.bz2"
+source="http://intelight.s3.amazonaws.com/vendor/intelight-civetweb-98404bcd4e79.tar.bz2"
 
-builddir="$srcdir/intelight-civetweb-89649d97ca06"
+builddir="$srcdir/intelight-civetweb-98404bcd4e79"
 build() {
 	cd "$builddir"
 	mkdir build
@@ -30,6 +30,6 @@ package() {
 	make install DESTDIR="${pkgdir}"
 }
 
-md5sums="f03cd54dd39f1669f36e0689c0c2993a  intelight-civetweb-89649d97ca06.tar.bz2"
-sha256sums="13085a60edc97886696c42ac2939bbbb778b34da4d5e7da4f046aa1006f6eda5  intelight-civetweb-89649d97ca06.tar.bz2"
-sha512sums="3a1cca3b3db8928a534f11e2ea16c398151721ca978019a769996faf325636502115b5808da7df8ef91fb2c7979423b1aa860a4e9a7482899a4018450c41b727  intelight-civetweb-89649d97ca06.tar.bz2"
+md5sums="e22a4e28c2b6ca12e32a6f7c54cbfbd4  intelight-civetweb-98404bcd4e79.tar.bz2"
+sha256sums="21dfdecf6d4840c505e6089e25f2b78f43f4e0432e237faff03a9f0fa220ed41  intelight-civetweb-98404bcd4e79.tar.bz2"
+sha512sums="afa33553c766ead1bdcb50213351b61240ab9959f698779c27cee328c979843db532f77a6e466235e33d9b2fc5e8d4ec2283b074edc40de9788b4a9a5cd23a40  intelight-civetweb-98404bcd4e79.tar.bz2"
