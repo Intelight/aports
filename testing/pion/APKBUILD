@@ -12,9 +12,9 @@ depends_dev="cmake"
 makedepends="$depends_dev"
 install=""
 subpackages="$pkgname-dev"
-source="http://intelight.s3.amazonaws.com/vendor/intelight-old-pion-net-5afe4899f26b.tar.bz2"
+source="http://intelight.s3.amazonaws.com/vendor/intelight-old-pion-net-08aa24212b04.tar.bz2"
 
-builddir="$srcdir/intelight-old-pion-net-5afe4899f26b"
+builddir="$srcdir/intelight-old-pion-net-08aa24212b04"
 build() {
 	cd "$builddir"
 	mkdir build
@@ -30,6 +30,6 @@ package() {
 	make install DESTDIR="${pkgdir}"
 }
 
-md5sums="943843b071b457af04d75a48362ad6ca  intelight-old-pion-net-5afe4899f26b.tar.bz2"
-sha256sums="6dee4398df1e04273f7f1efedd69f591af4adcb828f6838cdb5877da93e82718  intelight-old-pion-net-5afe4899f26b.tar.bz2"
-sha512sums="44c4219c9cbfd7cd414b74e5ec256ee74a73d5791571401b982f9aa23e56385c68648ce5a9c5f280a1b5d3b67c2073dc305675be83db98aa18a27bd93324b99a  intelight-old-pion-net-5afe4899f26b.tar.bz2"
+md5sums="b7e099f91c4b7b475dff9d64299af9aa  intelight-old-pion-net-08aa24212b04.tar.bz2"
+sha256sums="55a52d80602761e78089760f469fb5a0f06ac586544987b1e053146ce6b0da84  intelight-old-pion-net-08aa24212b04.tar.bz2"
+sha512sums="9a7c91abde2dea0c42ef9ae3f976dba541795eeae7e45bfb446f300930ceca5a2287d966a64c94ae7cab8221000da01d183de136822255038bf89f3a9fe8bb47  intelight-old-pion-net-08aa24212b04.tar.bz2"
