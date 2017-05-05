@@ -1,0 +1,38 @@
+# Contributor: Doug Crawford <doug.crawford@intelight-its.com>
+# Maintainer: Doug Crawford <doug.crawford@intelight-its.com>
+pkgname=lua-resty-upload
+pkgver=0.10
+pkgrel=0
+pkgdesc="Streaming reader and parser for http file uploading based on ngx_lua cosocket"
+url="https://github.com/openresty/lua-resty-upload"
+arch="noarch"
+license="BSD"
+depends=""
+makedepends=""
+source="$pkgname-$pkgver.tar.gz::https://github.com/openresty/lua-resty-upload/archive/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+
+#_luaversions="5.1 5.2 5.3"
+_luaversions="5.1"
+for _v in $_luaversions; do
+	makedepends="$makedepends lua$_v-dev"
+	subpackages="$subpackages lua$_v-${pkgname#lua-}:_subpackage"
+done
+
+package() {
+	mkdir -p "$pkgdir"
+}
+
+_subpackage() {
+	local lver="${subpkgname:3:3}"
+	pkgdesc="$pkgdesc for Lua $lver"
+	depends="lua$lver"
+	install_if="$pkgname=$pkgver-r$pkgrel lua$lver"
+
+	cd "$builddir"
+	install -m 755 -D lib/resty/upload.lua "$subpkgdir"/usr/share/lua/$lver/resty/upload.lua
+}
+
+md5sums="2035117857ed8fbfff5cc5d7bff1354c  lua-resty-upload-0.10.tar.gz"
+sha256sums="5d16e623d17d4f42cc64ea9cfb69ca960d313e12f5d828f785dd227cc483fcbd  lua-resty-upload-0.10.tar.gz"
+sha512sums="5826780d79c6e5a3644e3d8985c4274c439df60815ae3d13d94ff66dd84328aae6786c9b5a76579ed8cfbabdef7d856e240a85a3af13c1cf03f793dff33ba068  lua-resty-upload-0.10.tar.gz"
