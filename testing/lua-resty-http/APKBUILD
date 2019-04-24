@@ -1,0 +1,37 @@
+# Contributor: Doug Crawford <doug.crawford@intelight-its.com>
+# Maintainer: Doug Crawford <doug.crawford@intelight-its.com>
+pkgname=lua-resty-http
+pkgver=0.13
+pkgrel=0
+pkgdesc="Lua HTTP client cosocket driver for OpenResty / ngx_lua"
+url="https://github.com/ledgetech/lua-resty-http"
+arch="noarch"
+license="BSD"
+depends=""
+makedepends=""
+source="$pkgname-$pkgver.tar.gz::https://github.com/ledgetech/lua-resty-http/archive/v$pkgver.tar.gz"
+builddir="$srcdir/$pkgname-$pkgver"
+
+#_luaversions="5.1 5.2 5.3"
+_luaversions="5.1"
+for _v in $_luaversions; do
+	makedepends="$makedepends lua$_v-dev"
+	subpackages="$subpackages lua$_v-${pkgname#lua-}:_subpackage"
+done
+
+package() {
+	mkdir -p "$pkgdir"
+}
+
+_subpackage() {
+	local lver="${subpkgname:3:3}"
+	pkgdesc="$pkgdesc for Lua $lver"
+	depends="lua$lver"
+	install_if="$pkgname=$pkgver-r$pkgrel lua$lver"
+
+	cd "$builddir"
+	install -m 755 -D lib/resty/http.lua "$subpkgdir"/usr/share/lua/$lver/resty/http.lua
+	install -m 755 -D lib/resty/http_headers.lua "$subpkgdir"/usr/share/lua/$lver/resty/http_headers.lua
+}
+
+sha512sums="dde9e164c4f99523c5eca660e93baf7e610cab20cfb786a804354c4eedc151b230d67cb3878e9fe104fd6bd2fc0066942218dfd4518ebe81c5deadbea83b48d5  lua-resty-http-0.13.tar.gz"
